@@ -124,13 +124,86 @@
                     <view key="view" contentMode="scaleToFill" id="dJH-M0-d8Z">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zYp-oa-XEM">
+                                <rect key="frame" x="0.0" y="115" width="393" height="703"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="VideoTableViewCell" rowHeight="151" id="Iax-f9-OEq" customClass="VideoTableViewCell" customModule="SeSAC3Week4" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="151"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Iax-f9-OEq" id="Y7j-Zq-ZrJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="151"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lBA-uV-4d5">
+                                                    <rect key="frame" x="16" y="8" width="180" height="135"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="lBA-uV-4d5" secondAttribute="height" multiplier="4:3" id="EOl-MO-M1Z"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제목제목제목제목제목제목제목제목제목제목제목" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGN-U9-s77">
+                                                    <rect key="frame" x="204" y="8" width="173" height="40.666666666666664"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4분 30초 | 22.08.01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Taj-Ex-Jir">
+                                                    <rect key="frame" x="204" y="52.666666666666664" width="173" height="20.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lBA-uV-4d5" firstAttribute="leading" secondItem="Y7j-Zq-ZrJ" secondAttribute="leading" constant="16" id="2sP-Dy-nKC"/>
+                                                <constraint firstAttribute="trailing" secondItem="SGN-U9-s77" secondAttribute="trailing" constant="16" id="4Yk-c9-CpW"/>
+                                                <constraint firstItem="SGN-U9-s77" firstAttribute="top" secondItem="Y7j-Zq-ZrJ" secondAttribute="top" constant="8" id="54K-l9-fXH"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Taj-Ex-Jir" secondAttribute="bottom" constant="8" id="7oN-qR-z62"/>
+                                                <constraint firstItem="Taj-Ex-Jir" firstAttribute="top" secondItem="SGN-U9-s77" secondAttribute="bottom" constant="4" id="Rph-Cz-Ve5"/>
+                                                <constraint firstItem="lBA-uV-4d5" firstAttribute="top" secondItem="Y7j-Zq-ZrJ" secondAttribute="top" constant="8" id="ZVj-3a-aAZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="lBA-uV-4d5" secondAttribute="bottom" constant="8" id="htB-wh-TVm"/>
+                                                <constraint firstItem="Taj-Ex-Jir" firstAttribute="leading" secondItem="lBA-uV-4d5" secondAttribute="trailing" constant="8" id="odJ-jD-SIJ"/>
+                                                <constraint firstItem="SGN-U9-s77" firstAttribute="leading" secondItem="lBA-uV-4d5" secondAttribute="trailing" constant="8" id="qSU-56-zXk"/>
+                                                <constraint firstAttribute="trailing" secondItem="Taj-Ex-Jir" secondAttribute="trailing" constant="16" id="tII-N1-LiR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="Taj-Ex-Jir" id="r4O-fL-PRL"/>
+                                            <outlet property="thumbnailImageView" destination="lBA-uV-4d5" id="Y8g-xb-Wpz"/>
+                                            <outlet property="titleLabel" destination="SGN-U9-s77" id="D0C-Th-7FQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Llm-2F-Rzi">
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Z4b-XC-zfg" id="0Ki-22-s9Q"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="eeM-ck-FQ0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eeM-ck-FQ0" firstAttribute="bottom" secondItem="zYp-oa-XEM" secondAttribute="bottom" id="FW5-So-dAM"/>
+                            <constraint firstItem="eeM-ck-FQ0" firstAttribute="trailing" secondItem="zYp-oa-XEM" secondAttribute="trailing" id="Fv5-bH-p4G"/>
+                            <constraint firstItem="Llm-2F-Rzi" firstAttribute="leading" secondItem="eeM-ck-FQ0" secondAttribute="leading" id="M7A-kd-iEb"/>
+                            <constraint firstItem="Llm-2F-Rzi" firstAttribute="top" secondItem="eeM-ck-FQ0" secondAttribute="top" id="ab1-3Y-nLp"/>
+                            <constraint firstItem="zYp-oa-XEM" firstAttribute="leading" secondItem="eeM-ck-FQ0" secondAttribute="leading" id="gUP-kw-5wh"/>
+                            <constraint firstAttribute="trailing" secondItem="Llm-2F-Rzi" secondAttribute="trailing" id="oYH-gY-1JB"/>
+                            <constraint firstItem="zYp-oa-XEM" firstAttribute="top" secondItem="Llm-2F-Rzi" secondAttribute="bottom" id="tdK-BE-1Ds"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="Llm-2F-Rzi" id="xpL-G8-BvK"/>
+                        <outlet property="videoTableView" destination="zYp-oa-XEM" id="uNy-YX-uos"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tDa-I0-xN9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1602" y="4"/>
+            <point key="canvasLocation" x="1600.7633587786258" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>

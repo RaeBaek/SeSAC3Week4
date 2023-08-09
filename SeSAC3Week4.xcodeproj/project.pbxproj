@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1454B6B42A81C4CC00B8FD01 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1454B6B32A81C4CC00B8FD01 /* WeatherViewController.swift */; };
 		1454B6B62A81E78F00B8FD01 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1454B6B52A81E78F00B8FD01 /* VideoViewController.swift */; };
+		1454B6C62A83232900B8FD01 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1454B6C52A83232900B8FD01 /* VideoTableViewCell.swift */; };
 		1471C9A52A80966A0030D091 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471C9A42A80966A0030D091 /* AppDelegate.swift */; };
 		1471C9A72A80966A0030D091 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471C9A62A80966A0030D091 /* SceneDelegate.swift */; };
 		1471C9A92A80966A0030D091 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471C9A82A80966A0030D091 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		1454B6B32A81C4CC00B8FD01 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		1454B6B52A81E78F00B8FD01 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		1454B6C52A83232900B8FD01 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		1471C9A12A80966A0030D091 /* SeSAC3Week4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC3Week4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1471C9A42A80966A0030D091 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1471C9A62A80966A0030D091 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				1471C9C32A809C2E0030D091 /* TranslationViewController.swift */,
 				1454B6B32A81C4CC00B8FD01 /* WeatherViewController.swift */,
 				1454B6B52A81E78F00B8FD01 /* VideoViewController.swift */,
+				1454B6C52A83232900B8FD01 /* VideoTableViewCell.swift */,
 				1471C9AA2A80966A0030D091 /* Main.storyboard */,
 				1471C9AD2A80966C0030D091 /* Assets.xcassets */,
 				1471C9AF2A80966C0030D091 /* LaunchScreen.storyboard */,
@@ -175,6 +178,7 @@
 				1454B6B42A81C4CC00B8FD01 /* WeatherViewController.swift in Sources */,
 				1471C9A92A80966A0030D091 /* ViewController.swift in Sources */,
 				1471C9A52A80966A0030D091 /* AppDelegate.swift in Sources */,
+				1454B6C62A83232900B8FD01 /* VideoTableViewCell.swift in Sources */,
 				1471C9A72A80966A0030D091 /* SceneDelegate.swift in Sources */,
 				1471C9C62A809C510030D091 /* APIKey.swift in Sources */,
 			);
