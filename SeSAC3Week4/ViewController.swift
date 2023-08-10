@@ -16,24 +16,30 @@ struct Movie {
 
 class ViewController: UIViewController {
 
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var movieTableView: UITableView!
+    @IBOutlet var indicatorView: UIActivityIndicatorView!
+
     
     var movieList: [Movie] = []
-//    var movieJSONList: [JSON] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        movieTableView.rowHeight = 60
         movieTableView.delegate = self
         movieTableView.dataSource = self
+        movieTableView.rowHeight = 60
         
-        callRequest()
+        indicatorView.isHidden = true
         
     }
 
-    func callRequest() {
-        let url = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(APIKey.boxOfficeKey)&targetDt=20120101"
+    func callRequest(date: String) {
+        
+        indicatorView.startAnimating()
+        indicatorView.isHidden = false
+        
+        let url = "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=\(APIKey.boxOfficeKey)&targetDt=\(date)"
         
         AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
@@ -58,15 +64,28 @@ class ViewController: UIViewController {
                 }
                 
 //                self.movieJSONList = json["boxOfficeResult"]["dailyBoxOfficeList"].arrayValue
-                
+                self.indicatorView.stopAnimating()
+                self.indicatorView.isHidden = true
                 self.movieTableView.reloadData()
-                
-                
                 
             case .failure(let error):
                 print(error)
             }
         }
+    }
+}
+
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        movieList.removeAll()
+        
+        // 1. 20220101 -> 8글자
+        // 2. 20233333 -> 올바른 날짜
+        // 3. 날짜 범주
+        guard let date = searchBar.text else { return }
+        callRequest(date: date)
+        
     }
 }
 
