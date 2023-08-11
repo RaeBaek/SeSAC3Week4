@@ -6,8 +6,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 enum LangEnum: String, CaseIterable {
     case ko = "한국어"
@@ -40,9 +38,10 @@ class PapagoViewController: UIViewController {
     @IBOutlet var transitionTextView: UITextView!
     @IBOutlet var requestButton: UIButton!
     
-    var langList: [String: String] = ["ko": "한국어", "en": "영어", "ja": "일본어", "zh-CN": "중국어 간체", "zh-TW": "중국어 번체", "vi": "베트남어", "id": "인도네시아어", "th": "태국어", "de": "독일어", "ru": "러시아어", "es": "스페인어", "it": "이탈리아어", "fr": "프랑스어"]
-    var langList2: [String: String] = ["한국어": "ko", "영어": "en", "일본어": "ja", "중국어 간체": "zh-CN", "중국어 번체": "zh-TW중", "베트남어": "vi", "인도네시아어": "id", "태국어": "th", "독일어": "de", "러시아어": "ru", "스페인어": "es", "이탈리아어": "it", "프랑스어": "fr"]
-    var sortedLangDict = [String: String]()
+    var languageList: [String: String] = ["한국어": "ko", "영어": "en", "일본어": "ja", "중국어 간체": "zh-CN", "중국어 번체": "zh-TW", "베트남어": "vi", "인도네시아어": "id", "태국어": "th", "독일어": "de", "러시아어": "ru", "스페인어": "es", "이탈리아어": "it", "프랑스어": "fr"]
+    
+    var sortedLangDict: [Dictionary<String, String>.Element] = []
+    
     var values: [String] = []
     
     let originalPickerView = UIPickerView()
@@ -51,7 +50,19 @@ class PapagoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserDefaultsHelper.standard.nickname = "래훈"
+        UserDefaultsHelper.standard.age
+        
+        UserDefaults.standard.set("고래밥", forKey: "nickname")
+        UserDefaults.standard.set(33, forKey: "age")
+        
+        UserDefaults.standard.string(forKey: "nickname")
+        UserDefaults.standard.integer(forKey: "age")
+        
         setUI()
+        
+        // 한국어 오름차순으로 pickerView에 표현
+        sortedLangDict = languageList.sorted { $0.0 < $1.0 }
         
         originalPickerView.delegate = self
         originalPickerView.dataSource = self
@@ -68,8 +79,8 @@ class PapagoViewController: UIViewController {
         guard let source = originalLangTextField.text else { return }
         guard let target = transitionLangTextField.text else { return }
         
-        guard let sourceValue = langList2[source] else { return }
-        guard let targetValue = langList2[target] else { return }
+        guard let sourceValue = languageList[source] else { return }
+        guard let targetValue = languageList[target] else { return }
         
         requestAPI(source: sourceValue, target: targetValue)
     }
@@ -99,37 +110,23 @@ class PapagoViewController: UIViewController {
     }
     
     func requestAPI(source: String, target: String) {
-        let url = "https://openapi.naver.com/v1/papago/n2mt"
-        let header: HTTPHeaders = [
-            "X-Naver-Client-Id" : APIKey.naverClientID,
-            "X-Naver-Client-Secret" : APIKey.naverClientSecret
-        ]
-        guard let text = originalTextView.text else { return }
-        let parameters: Parameters = [
-            "source": source,
-            "target": target,
-            "text": text
-        ]
         
-        AF.request(url, method: .post, parameters: parameters, headers: header).validate().responseJSON {
-            response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
-                
-                let data = json["message"]["result"]["translatedText"].stringValue
-                self.transitionTextView.text = data
-            case .failure(let error):
-                print(error)
-            }
+        guard let text = originalTextView.text else { return }
+        guard let oglang = originalLangTextField.text else { return }
+        guard let trlang = transitionLangTextField.text else { return }
+        guard let source = languageList[oglang] else { return }
+        guard let target = languageList[trlang] else { return }
+        
+        PapagoAPIManager.shared.callRequest(text: text, source: source, target: target) { result in
+            self.transitionTextView.text = result
         }
     }
+    
 }
 
 extension PapagoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return langList2.count
+        return languageList.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -137,18 +134,14 @@ extension PapagoViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let lang = langList2.sorted { $0.0 < $1.0 }
-        return lang[row].key
+        return sortedLangDict[row].key
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        let lang = langList2.sorted { $0.0 < $1.0 }
-        
         if pickerView == originalPickerView {
-            originalLangTextField.text = lang[row].key
+            originalLangTextField.text = sortedLangDict[row].key
         } else {
-            transitionLangTextField.text = lang[row].key
+            transitionLangTextField.text = sortedLangDict[row].key
         }
     }
     

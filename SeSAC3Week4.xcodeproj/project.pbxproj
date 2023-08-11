@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140925EE2A85E357001629D2 /* PapagoAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140925ED2A85E357001629D2 /* PapagoAPIManager.swift */; };
+		140925F02A85F9EC001629D2 /* AsyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140925EF2A85F9EC001629D2 /* AsyncViewController.swift */; };
 		1454B6B42A81C4CC00B8FD01 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1454B6B32A81C4CC00B8FD01 /* WeatherViewController.swift */; };
 		1454B6B62A81E78F00B8FD01 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1454B6B52A81E78F00B8FD01 /* VideoViewController.swift */; };
 		1454B6C62A83232900B8FD01 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1454B6C52A83232900B8FD01 /* VideoTableViewCell.swift */; };
@@ -22,9 +24,16 @@
 		1471C9C02A8096C80030D091 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 1471C9BF2A8096C80030D091 /* SwiftyJSON */; };
 		1471C9C22A809B9A0030D091 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1471C9C12A809B9A0030D091 /* .gitignore */; };
 		1471C9C62A809C510030D091 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1471C9C52A809C510030D091 /* APIKey.swift */; };
+		147CF50C2A85BA9B006DE4C5 /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CF50B2A85BA9B006DE4C5 /* ReusableViewProtocol.swift */; };
+		147CF5112A85BD00006DE4C5 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CF5102A85BD00006DE4C5 /* UserDefaultsHelper.swift */; };
+		147CF5132A85C50F006DE4C5 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CF5122A85C50F006DE4C5 /* Endpoint.swift */; };
+		147CF5152A85C5CE006DE4C5 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CF5142A85C5CE006DE4C5 /* URL+Extension.swift */; };
+		147CF5172A85C77E006DE4C5 /* KakaoAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147CF5162A85C77E006DE4C5 /* KakaoAPIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		140925ED2A85E357001629D2 /* PapagoAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoAPIManager.swift; sourceTree = "<group>"; };
+		140925EF2A85F9EC001629D2 /* AsyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewController.swift; sourceTree = "<group>"; };
 		1454B6B32A81C4CC00B8FD01 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		1454B6B52A81E78F00B8FD01 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		1454B6C52A83232900B8FD01 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -39,6 +48,11 @@
 		1471C9B22A80966C0030D091 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1471C9C12A809B9A0030D091 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1471C9C52A809C510030D091 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		147CF50B2A85BA9B006DE4C5 /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
+		147CF5102A85BD00006DE4C5 /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		147CF5122A85C50F006DE4C5 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		147CF5142A85C5CE006DE4C5 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		147CF5162A85C77E006DE4C5 /* KakaoAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoAPIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,11 +91,14 @@
 				1471C9A42A80966A0030D091 /* AppDelegate.swift */,
 				1471C9A62A80966A0030D091 /* SceneDelegate.swift */,
 				1471C9C52A809C510030D091 /* APIKey.swift */,
-				1471C9A82A80966A0030D091 /* ViewController.swift */,
-				1454B6B52A81E78F00B8FD01 /* VideoViewController.swift */,
-				1454B6B32A81C4CC00B8FD01 /* WeatherViewController.swift */,
-				1454B6CC2A84772B00B8FD01 /* PapagoViewController.swift */,
-				1454B6C52A83232900B8FD01 /* VideoTableViewCell.swift */,
+				147CF5102A85BD00006DE4C5 /* UserDefaultsHelper.swift */,
+				147CF5162A85C77E006DE4C5 /* KakaoAPIManager.swift */,
+				140925ED2A85E357001629D2 /* PapagoAPIManager.swift */,
+				147CF5122A85C50F006DE4C5 /* Endpoint.swift */,
+				147CF5142A85C5CE006DE4C5 /* URL+Extension.swift */,
+				147CF50D2A85BC71006DE4C5 /* Controller */,
+				147CF50E2A85BC97006DE4C5 /* Protocol */,
+				147CF50F2A85BCA9006DE4C5 /* Cell */,
 				1471C9AA2A80966A0030D091 /* Main.storyboard */,
 				1471C9AD2A80966C0030D091 /* Assets.xcassets */,
 				1471C9AF2A80966C0030D091 /* LaunchScreen.storyboard */,
@@ -89,6 +106,34 @@
 				1471C9C12A809B9A0030D091 /* .gitignore */,
 			);
 			path = SeSAC3Week4;
+			sourceTree = "<group>";
+		};
+		147CF50D2A85BC71006DE4C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1471C9A82A80966A0030D091 /* ViewController.swift */,
+				1454B6B52A81E78F00B8FD01 /* VideoViewController.swift */,
+				1454B6B32A81C4CC00B8FD01 /* WeatherViewController.swift */,
+				1454B6CC2A84772B00B8FD01 /* PapagoViewController.swift */,
+				140925EF2A85F9EC001629D2 /* AsyncViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		147CF50E2A85BC97006DE4C5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				147CF50B2A85BA9B006DE4C5 /* ReusableViewProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		147CF50F2A85BCA9006DE4C5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1454B6C52A83232900B8FD01 /* VideoTableViewCell.swift */,
+			);
+			name = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,13 +218,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147CF5112A85BD00006DE4C5 /* UserDefaultsHelper.swift in Sources */,
 				1454B6B62A81E78F00B8FD01 /* VideoViewController.swift in Sources */,
 				1454B6B42A81C4CC00B8FD01 /* WeatherViewController.swift in Sources */,
+				147CF50C2A85BA9B006DE4C5 /* ReusableViewProtocol.swift in Sources */,
 				1471C9A92A80966A0030D091 /* ViewController.swift in Sources */,
+				147CF5172A85C77E006DE4C5 /* KakaoAPIManager.swift in Sources */,
+				147CF5152A85C5CE006DE4C5 /* URL+Extension.swift in Sources */,
 				1471C9A52A80966A0030D091 /* AppDelegate.swift in Sources */,
 				1454B6CD2A84772B00B8FD01 /* PapagoViewController.swift in Sources */,
+				140925F02A85F9EC001629D2 /* AsyncViewController.swift in Sources */,
 				1454B6C62A83232900B8FD01 /* VideoTableViewCell.swift in Sources */,
 				1471C9A72A80966A0030D091 /* SceneDelegate.swift in Sources */,
+				140925EE2A85E357001629D2 /* PapagoAPIManager.swift in Sources */,
+				147CF5132A85C50F006DE4C5 /* Endpoint.swift in Sources */,
 				1471C9C62A809C510030D091 /* APIKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
