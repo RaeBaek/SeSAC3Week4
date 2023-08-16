@@ -8,20 +8,6 @@
 import UIKit
 import Kingfisher
 
-struct Video {
-    let author: String
-    let date: String
-    let time: Int
-    let thumbnail: String
-    let title: String
-    let link: String
-    
-    var contents: String {
-        return "\(author) | \(time)회\n\(date)"
-        
-    }
-}
-
 /*
  {
              "author": "이지금 [IU Official]",
@@ -35,13 +21,12 @@ struct Video {
 
 class VideoViewController: UIViewController {
     
-    var videoList: [Video] = []
+    var video: Video?
     var page = 1
     var isEnd = false // 현재 페이지가 마지막 페이지인지 점검하는 프로퍼티
     
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var videoTableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,48 +41,20 @@ class VideoViewController: UIViewController {
     }
     
     func callRequest(query: String, page: Int) {
-        
-        KakaoAPIManager.shared.callRequest(type: .video, query: query) { json in
-            print("=========\(json)")
+        KakaoAPIManager.shared.callRequest(type: .video, query: query, page: page) { response in
+            print("=========\(response)")
+            
+            self.video = response
+            
+            guard let isEnd = self.video?.meta.isEnd else { return }
+            self.isEnd = isEnd
+            
+            print(self.isEnd)
+            
+            self.videoTableView.reloadData()
+            
         }
-        
-//        AF.request(url,
-//                   method: .get,
-//                   headers: header).validate(statusCode: 200...500).responseJSON { response in
-//            switch response.result {
-//            case .success(let value):
-//                let json = JSON(value)
-//
-//                guard let statusCode = response.response?.statusCode else { return print("에러발생!")}
-//
-//                if statusCode == 200 {
-//
-//                    self.isEnd = json["meta"]["is_end"].boolValue
-//                    print(self.isEnd)
-//
-//                    for item in json["documents"].arrayValue {
-//                        let author = item["author"].stringValue
-//                        let date = item["datetime"].stringValue
-//                        let time = item["play_time"].intValue
-//                        let thumbnail = item["thumbnail"].stringValue
-//                        let title = item["title"].stringValue
-//                        let link = item["link"].stringValue
-//
-//                        let data = Video(author: author, date: date, time: time, thumbnail: thumbnail, title: title, link: link)
-//                        self.videoList.append(data)
-//
-//                    }
-//                    self.videoTableView.reloadData()
-//
-//                } else {
-//                    print("문제가 발생했어요. 잠시 후 다시 시도해주세요!")
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
     }
-    
 }
 
 // UITableViewDataSourcePrefetching: iOS10 이상 사용 가능한 프로토콜, CellForRowAt이 호출되기 전에 먼저 호출 됨.
@@ -108,30 +65,39 @@ extension VideoViewController: UITableViewDelegate, UITableViewDataSource, UITab
     // page count
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         for indexPath in indexPaths {
-            if videoList.count - 1 == indexPath.row && page < 15 && !isEnd {
+            guard let document = video?.documents else { return }
+            guard let isEnd = video?.meta.isEnd else { return }
+            print(isEnd)
+            if document.count - 1 == indexPath.row && self.page < 15 && !isEnd {
                 page += 1
-                callRequest(query: searchBar.text!, page: page)
+                self.callRequest(query: searchBar.text!, page: page)
             }
+//            videoTableView.reloadData()
         }
+        
     }
     
     // 취소 기능: 직접 취소하는 기능을 구현해줘야 함!
     func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-//        print("====취소 \(indexPaths)")
+        print("====취소 \(indexPaths)")
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return videoList.count
+        
+        guard let count = self.video?.documents.count else { return 0 }
+        
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: VideoTableViewCell.identifier) as? VideoTableViewCell else { return UITableViewCell() }
         
-        cell.titleLabel.text = videoList[indexPath.row].title
-        cell.contentLabel.text = videoList[indexPath.row].contents
+        guard let document = video?.documents else { return UITableViewCell() }
+        cell.titleLabel.text = document[indexPath.row].title
+        cell.contentLabel.text = document[indexPath.row].contents
         
-        if let url = URL(string: videoList[indexPath.row].thumbnail) {
+        if let url = URL(string: document[indexPath.row].thumbnail) {
             cell.thumbnailImageView.kf.setImage(with: url)
         }
         
@@ -142,9 +108,8 @@ extension VideoViewController: UITableViewDelegate, UITableViewDataSource, UITab
 
 extension VideoViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         page = 1 // 새로운 검색어이기 때문에 page를 1로 변경
-        videoList.removeAll()
+//        videoList.removeAll()
         
         guard let query = searchBar.text else { return }
         callRequest(query: query, page: page)

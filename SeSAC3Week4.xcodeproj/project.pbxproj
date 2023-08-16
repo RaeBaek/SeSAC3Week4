@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		140925EE2A85E357001629D2 /* PapagoAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140925ED2A85E357001629D2 /* PapagoAPIManager.swift */; };
 		140925F02A85F9EC001629D2 /* AsyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140925EF2A85F9EC001629D2 /* AsyncViewController.swift */; };
+		143095732A8A022F00D00421 /* BoxOfficeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143095722A8A022F00D00421 /* BoxOfficeData.swift */; };
+		143095AB2A8CF15800D00421 /* VideoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143095AA2A8CF15800D00421 /* VideoData.swift */; };
 		1454B6B42A81C4CC00B8FD01 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1454B6B32A81C4CC00B8FD01 /* WeatherViewController.swift */; };
 		1454B6B62A81E78F00B8FD01 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1454B6B52A81E78F00B8FD01 /* VideoViewController.swift */; };
 		1454B6C62A83232900B8FD01 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1454B6C52A83232900B8FD01 /* VideoTableViewCell.swift */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		140925ED2A85E357001629D2 /* PapagoAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PapagoAPIManager.swift; sourceTree = "<group>"; };
 		140925EF2A85F9EC001629D2 /* AsyncViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncViewController.swift; sourceTree = "<group>"; };
+		143095722A8A022F00D00421 /* BoxOfficeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeData.swift; sourceTree = "<group>"; };
+		143095AA2A8CF15800D00421 /* VideoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoData.swift; sourceTree = "<group>"; };
 		1454B6B32A81C4CC00B8FD01 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		1454B6B52A81E78F00B8FD01 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		1454B6C52A83232900B8FD01 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
@@ -69,6 +73,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		143095A92A8CF11900D00421 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				143095AA2A8CF15800D00421 /* VideoData.swift */,
+				143095722A8A022F00D00421 /* BoxOfficeData.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		1471C9982A80966A0030D091 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +101,7 @@
 		1471C9A32A80966A0030D091 /* SeSAC3Week4 */ = {
 			isa = PBXGroup;
 			children = (
+				143095A92A8CF11900D00421 /* Model */,
 				1471C9A42A80966A0030D091 /* AppDelegate.swift */,
 				1471C9A62A80966A0030D091 /* SceneDelegate.swift */,
 				1471C9C52A809C510030D091 /* APIKey.swift */,
@@ -229,8 +243,10 @@
 				1454B6CD2A84772B00B8FD01 /* PapagoViewController.swift in Sources */,
 				140925F02A85F9EC001629D2 /* AsyncViewController.swift in Sources */,
 				1454B6C62A83232900B8FD01 /* VideoTableViewCell.swift in Sources */,
+				143095AB2A8CF15800D00421 /* VideoData.swift in Sources */,
 				1471C9A72A80966A0030D091 /* SceneDelegate.swift in Sources */,
 				140925EE2A85E357001629D2 /* PapagoAPIManager.swift in Sources */,
+				143095732A8A022F00D00421 /* BoxOfficeData.swift in Sources */,
 				147CF5132A85C50F006DE4C5 /* Endpoint.swift in Sources */,
 				1471C9C62A809C510030D091 /* APIKey.swift in Sources */,
 			);

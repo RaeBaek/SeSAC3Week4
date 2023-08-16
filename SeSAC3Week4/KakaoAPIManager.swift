@@ -18,23 +18,22 @@ class KakaoAPIManager {
     let header: HTTPHeaders = ["Authorization": "KakaoAK \(APIKey.kakaoKey)"]
     
     // 탈출 후행 클로저!
-    func callRequest(type: Endpoint, query: String, completionHandler: @escaping (JSON) -> () ) {
+    func callRequest(type: Endpoint, query: String, page: Int, completionHandler: @escaping (Video) -> () ) {
         guard let text = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        let url = type.requestURL + text
+        let url = type.requestURL + text + "&page="
         
         print(url)
         
         AF.request(url,
                    method: .get,
-                   headers: header).validate(statusCode: 200...500).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                completionHandler(json)
+                   headers: header).validate(statusCode: 200...500)
+            .responseDecodable(of: Video.self) { response in
                 
-            case .failure(let error):
-                print(error)
+                guard let value = response.value else { return }
+                
+                completionHandler(value)
+                
             }
-        }
+        
     }
 }
