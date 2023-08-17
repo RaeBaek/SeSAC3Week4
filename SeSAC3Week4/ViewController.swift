@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         
     }
 
-    func callRequest(date: String) {
+    func callRequest(date: String, completionHandler: @escaping (BoxOffice) -> Void) {
         
         indicatorView.startAnimating()
         indicatorView.isHidden = false
@@ -44,37 +44,18 @@ class ViewController: UIViewController {
         
         AF.request(url, method: .get).validate()
             .responseDecodable(of: BoxOffice.self) { response in
-                print(response.value)
-                self.result = response.value
+                
+                switch response.result {
+                case .success(let value):
+                    print(value)
+                    completionHandler(value)
+                case .failure(let error):
+                    print(error)
+                    
+                }
                 
             }
         
-        
-    
-        
-//            .responseJSON { response in
-//            switch response.result {
-//            case .success(let value):
-//                let json = JSON(value)
-//                print("JSON: \(json)")
-//
-//                for item in json["boxOfficeResult"]["dailyBoxOfficeList"].arrayValue {
-//                    let movieNm = item["movieNm"].stringValue
-//                    let openDt = item["openDt"].stringValue
-//
-//                    let data = Movie(title: movieNm, release: openDt)
-//                    self.movieList.append(data)
-//                }
-//
-////                self.movieJSONList = json["boxOfficeResult"]["dailyBoxOfficeList"].arrayValue
-//                self.indicatorView.stopAnimating()
-//                self.indicatorView.isHidden = true
-//                self.movieTableView.reloadData()
-//
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
     }
 }
 
@@ -87,22 +68,25 @@ extension ViewController: UISearchBarDelegate {
         // 2. 20233333 -> 올바른 날짜
         // 3. 날짜 범주
         guard let date = searchBar.text else { return }
-        callRequest(date: date)
-        
+        callRequest(date: date) { result in
+            self.result = result
+            self.movieTableView.reloadData()
+            self.indicatorView.isHidden = true
+        }
     }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return result!.boxOfficeResult.dailyBoxOfficeList.count //movieList.count
+        return result?.boxOfficeResult.dailyBoxOfficeList.count ?? 0 //movieList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieCell") else {
             return UITableViewCell()
         }
-        cell.textLabel?.text = movieList[indexPath.row].title
-        cell.detailTextLabel?.text = movieList[indexPath.row].release
+        cell.textLabel?.text = result?.boxOfficeResult.dailyBoxOfficeList[indexPath.row].movieNm
+        cell.detailTextLabel?.text = result?.boxOfficeResult.dailyBoxOfficeList[indexPath.row].openDt
         
         return cell
     }

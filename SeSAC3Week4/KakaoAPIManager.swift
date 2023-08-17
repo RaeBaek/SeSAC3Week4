@@ -29,10 +29,14 @@ class KakaoAPIManager {
                    headers: header).validate(statusCode: 200...500)
             .responseDecodable(of: Video.self) { response in
                 
-                guard let value = response.value else { return }
-                
-                completionHandler(value)
-                
+                switch response.result {
+                case .success(let value):
+                    print(value)
+                    completionHandler(value)
+                    
+                case .failure(let error):
+                    print(error)
+                }
             }
         
     }
